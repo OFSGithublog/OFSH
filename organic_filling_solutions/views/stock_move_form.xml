@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_attachments" model="ir.ui.view">
+        <field name="name">stock.move.form.attachment</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids"/>
+                            <field name="activity_ids"/>
+                            <field name="message_ids"/>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_view_stock_attachments"
+            model="ir.actions.act_window">
+        <field name="name">Attachments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.move</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+                Record a new accommodation!
+            </p>
+        </field>
+    </record>
+</odoo>

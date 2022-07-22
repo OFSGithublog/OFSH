@@ -1,0 +1,1533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_laboratory_form" model="ir.ui.view">
+        <field name="name">regulatory.laboratory.form</field>
+        <field name="model">regulatory.laboratory</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="type"/>
+                        <field name="master_sop"/>
+                    </group>
+                    <!--                                        <group>-->
+                    <!--                                            <notebook>-->
+                    <!--                                                <page>-->
+                    <!--                                                    <field name="revision_ids">-->
+                    <!--                                                        <tree>-->
+                    <!--                                                            <field name="name"/>-->
+                    <!--                                                            <field name="state"/>-->
+                    <!--                                                            <field name="revision_files"/>-->
+                    <!--                                                        </tree>-->
+                    <!--                                                    </field>-->
+                    <!--                                                </page>-->
+                    <!--                                            </notebook>-->
+                    <!--                                        </group>-->
+                    <!--                    <group>-->
+                    <!--                        <field name="related_files"/>-->
+                    <!--                        <field name="related_image_png"/>-->
+                    <!--                        <field name="related_image_jpeg"/>-->
+                    <!--                    </group>-->
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    <record id="view_revisions_form" model="ir.ui.view">-->
+    <!--        <field name="name">revisions.laboratory.form</field>-->
+    <!--        <field name="model">revisions.laboratory</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form>-->
+    <!--                <sheet>-->
+    <!--                    <group>-->
+    <!--                        <field name="name"/>-->
+    <!--                        <field name="state"/>-->
+    <!--                        <field name="create_uid"/>-->
+    <!--                        <field name="create_date"/>-->
+    <!--                        <field name="revision_files"/>-->
+    <!--                    </group>-->
+    <!--                </sheet>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <record id="view_production_form" model="ir.ui.view">
+        <field name="name">regulatory.production.form</field>
+        <field name="model">regulatory.production</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="type"/>
+                        <field name="related_file"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_warehouse_form" model="ir.ui.view">
+        <field name="name">regulatory.warehouse.form</field>
+        <field name="model">regulatory.warehouse</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="type"/>
+                        <field name="related_file_doc"/>
+                        <field name="related_file_pdf"/>
+                        <field name="revisions">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="revision_file"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_general_form" model="ir.ui.view">
+        <field name="name">regulatory.general.form</field>
+        <field name="model">regulatory.general</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="type"/>
+                        <field name="related_file_doc"/>
+                        <field name="related_file_pdf"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_quality_form" model="ir.ui.view">
+        <field name="name">regulatory.quality.form</field>
+        <field name="model">regulatory.quality</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="type"/>
+                        <field name="related_file_doc"/>
+                        <field name="related_file_pdf"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_reworks_form" model="ir.ui.view">
+        <field name="name">regulatory.reworks.form</field>
+        <field name="model">regulatory.reworks</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="type"/>
+                        <field name="related_file_doc"/>
+                        <field name="related_file_pdf"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_historical_form" model="ir.ui.view">
+        <field name="name">regulatory.historical.form</field>
+        <field name="model">regulatory.historical</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="type"/>
+                        <field name="related_file_doc"/>
+                        <field name="related_file_pdf"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_fda_form" model="ir.ui.view">
+        <field name="name">regulatory.fda.form</field>
+        <field name="model">regulatory.fda</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file"/>
+                        <field name="related_file_image"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_epa_form" model="ir.ui.view">
+        <field name="name">regulatory.epa.form</field>
+        <field name="model">regulatory.epa</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file"/>
+                        <field name="related_file_image"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_epa_california" model="ir.ui.view">
+        <field name="name">regulatory.california.form</field>
+        <field name="model">regulatory.california</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file"/>
+                        <field name="related_file_image"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_epa_texas" model="ir.ui.view">
+        <field name="name">regulatory.texas.form</field>
+        <field name="model">regulatory.texas</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file"/>
+                        <field name="related_file_image"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_internal_audits" model="ir.ui.view">
+        <field name="name">regulatory.internal.audits.form</field>
+        <field name="model">regulatory.internal.audits</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_nsf" model="ir.ui.view">
+        <field name="name">regulatory.nsf.form</field>
+        <field name="model">regulatory.nsf</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file_docs"/>
+                        <field name="related_file_pdf"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_walmart" model="ir.ui.view">
+        <field name="name">regulatory.walmart.form</field>
+        <field name="model">regulatory.walmart</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file_docs"/>
+                        <field name="related_file_pdf"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_heb" model="ir.ui.view">
+        <field name="name">regulatory.heb.form</field>
+        <field name="model">regulatory.heb</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file_docs"/>
+                        <field name="related_file_pdf"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_archpoint" model="ir.ui.view">
+        <field name="name">regulatory.archpoint.form</field>
+        <field name="model">regulatory.archpoint</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file_docs"/>
+                        <field name="related_file_pdf"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_training" model="ir.ui.view">
+        <field name="name">regulatory.training.form</field>
+        <field name="model">regulatory.training</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file" widget="binary"/>
+                        <field name="video_url"/>
+                        <field name="video_url2"/>
+                        <field name="video_url3"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_supplier_docs" model="ir.ui.view">
+        <field name="name">regulatory.supplier.docs.form</field>
+        <field name="model">regulatory.supplier.docs</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="supplier_id"/>
+                        <field name="report_date" widget="date"/>
+                        <field name="file" widget="binary"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_org_chart" model="ir.ui.view">
+        <field name="name">regulatory.org.chart.form</field>
+        <field name="model">regulatory.org.chart</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="org_file" widget="binary"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_registrations" model="ir.ui.view">
+        <field name="name">regulatory.registrations.form</field>
+        <field name="model">regulatory.registrations</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="file" widget="binary"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_statement" model="ir.ui.view">
+        <field name="name">regulatory.statement.form</field>
+        <field name="model">regulatory.statement</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="file" widget="pdf_viewer"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_revisions" model="ir.ui.view">
+        <field name="name">regulatory.revisions.form</field>
+        <field name="model">regulatory.revisions</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="revision_no"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="state"/>
+                        <field name="revision_file" widget="pdf_viewer"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_suppliers" model="ir.ui.view">
+        <field name="name">regulatory.suppliers.form</field>
+        <field name="model">regulatory.suppliers</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="supplier_id"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_complaints" model="ir.ui.view">
+        <field name="name">regulatory.complaints.form</field>
+        <field name="model">regulatory.complaints</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="product_id"/>
+                        <field name="mo_id"/>
+                        <field name="state"/>
+                        <field name="description"/>
+                        <field name="file_pdf" widget="pdf_viewer"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_forms" model="ir.ui.view">
+        <field name="name">regulatory.forms.form</field>
+        <field name="model">regulatory.forms</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="file" widget="pdf_viewer"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_quarterly_review_log" model="ir.ui.view">
+        <field name="name">regulatory.quarterly.review.log.form</field>
+        <field name="model">regulatory.quarterly.review.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="file_pdf" widget="pdf_viewer"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_mock_recalls" model="ir.ui.view">
+        <field name="name">regulatory.mock.recalls.form</field>
+        <field name="model">regulatory.mock.recalls</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="file_new" widget="pdf_viewer"/>
+                        <field name="file_related" widget="binary"/>
+                        <field name="new_image" widget="image"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="view_regulatory_plans" model="ir.ui.view">
+        <field name="name">regulatory.plans.form</field>
+        <field name="model">regulatory.plans</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="file_pdf" widget="pdf_viewer"/>
+                        <field name="revision_ids"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_job_description_form" model="ir.ui.view">
+        <field name="name">regulatory.job.description.form</field>
+        <field name="model">regulatory.job.description</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="responsibilities" widget="text"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_sop_type" model="ir.ui.view">
+        <field name="name">regulatory.sop.type.form</field>
+        <field name="model">regulatory.sop.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="sop_ids"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_sop_type_tree" model="ir.ui.view">
+        <field name="name">regulatory.sop.type.tree</field>
+        <field name="model">regulatory.sop.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id"/>
+                <field name="create_date"/>
+                <field name="name"/>
+                <field name="sop_ids"/>
+                <field name="create_uid"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_regulatory_sop" model="ir.ui.view">
+        <field name="name">regulatory.sop.form</field>
+        <field name="model">regulatory.sop</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="section"/>
+                        <field name="sop_type_ids"/>
+                        <field name="file_excel" widget="binary"/>
+                        <field name="file_word" widget="binary"/>
+                        <field name="file_pdf" widget="pdf_viewer"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_regulatory_revision_files" model="ir.ui.view">
+        <field name="name">regulatory.revision.files.form</field>
+        <field name="model">regulatory.revision.files</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="revision_file"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_regulatory_revision_files"
+            model="ir.actions.act_window">
+        <field name="name">Revisions</field>
+        <field name="res_model">regulatory.revision.files</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_laboratory"
+            model="ir.actions.act_window">
+        <field name="name">Laboratory</field>
+        <field name="res_model">regulatory.laboratory</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <!--    <record id="action_revisions"-->
+    <!--            model="ir.actions.act_window">-->
+    <!--        <field name="name">Revisions</field>-->
+    <!--        <field name="res_model">revisions.laboratory</field>-->
+    <!--        <field name="view_mode">tree,form</field>-->
+    <!--        <field name="help" type="html">-->
+    <!--            <p class="o_view_no_content_smiling_face">-->
+    <!--            </p>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <record id="action_production"
+            model="ir.actions.act_window">
+        <field name="name">Production</field>
+        <field name="res_model">regulatory.production</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_warehouse"
+            model="ir.actions.act_window">
+        <field name="name">Warehouse</field>
+        <field name="res_model">regulatory.warehouse</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_general"
+            model="ir.actions.act_window">
+        <field name="name">General</field>
+        <field name="res_model">regulatory.general</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_quality"
+            model="ir.actions.act_window">
+        <field name="name">Quality</field>
+        <field name="res_model">regulatory.quality</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_reworks"
+            model="ir.actions.act_window">
+        <field name="name">Reworks</field>
+        <field name="res_model">regulatory.reworks</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_historical"
+            model="ir.actions.act_window">
+        <field name="name">Historical</field>
+        <field name="res_model">regulatory.historical</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_fda"
+            model="ir.actions.act_window">
+        <field name="name">FDA</field>
+        <field name="res_model">regulatory.fda</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_epa"
+            model="ir.actions.act_window">
+        <field name="name">EPA</field>
+        <field name="res_model">regulatory.epa</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_california"
+            model="ir.actions.act_window">
+        <field name="name">California</field>
+        <field name="res_model">regulatory.california</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_texas"
+            model="ir.actions.act_window">
+        <field name="name">Texas</field>
+        <field name="res_model">regulatory.texas</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_internal_audits"
+            model="ir.actions.act_window">
+        <field name="name">Internal Audits</field>
+        <field name="res_model">regulatory.internal.audits</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_nsf"
+            model="ir.actions.act_window">
+        <field name="name">NSF</field>
+        <field name="res_model">regulatory.nsf</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_walmart"
+            model="ir.actions.act_window">
+        <field name="name">Wal-Mart</field>
+        <field name="res_model">regulatory.walmart</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_heb"
+            model="ir.actions.act_window">
+        <field name="name">HEB</field>
+        <field name="res_model">regulatory.heb</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_archpoint"
+            model="ir.actions.act_window">
+        <field name="name">Archpoint</field>
+        <field name="res_model">regulatory.archpoint</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_training"
+            model="ir.actions.act_window">
+        <field name="name">Training</field>
+        <field name="res_model">regulatory.training</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_supplier_docs"
+            model="ir.actions.act_window">
+        <field name="name">Supplier Documents</field>
+        <field name="res_model">regulatory.supplier.docs</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_org_chart"
+            model="ir.actions.act_window">
+        <field name="name">Org Chart</field>
+        <field name="res_model">regulatory.org.chart</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_registrations"
+            model="ir.actions.act_window">
+        <field name="name">Registrations</field>
+        <field name="res_model">regulatory.registrations</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_statement"
+            model="ir.actions.act_window">
+        <field name="name">Statement</field>
+        <field name="res_model">regulatory.statement</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_revisions"
+            model="ir.actions.act_window">
+        <field name="name">Revisions</field>
+        <field name="res_model">regulatory.revisions</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_suppliers"
+            model="ir.actions.act_window">
+        <field name="name">Suppliers</field>
+        <field name="res_model">regulatory.suppliers</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_complaints"
+            model="ir.actions.act_window">
+        <field name="name">Complaints</field>
+        <field name="res_model">regulatory.complaints</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_forms"
+            model="ir.actions.act_window">
+        <field name="name">Forms</field>
+        <field name="res_model">regulatory.forms</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+
+    <record id="action_job_description_form"
+            model="ir.actions.act_window">
+        <field name="name">Job Description</field>
+        <field name="res_model">regulatory.job.description</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+
+    <record id="action_quarterly_review_log"
+            model="ir.actions.act_window">
+        <field name="name">Quarterly Management Review Log</field>
+        <field name="res_model">regulatory.quarterly.review.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_mock_recalls"
+            model="ir.actions.act_window">
+        <field name="name">Mock Recalls</field>
+        <field name="res_model">regulatory.mock.recalls</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_plans"
+            model="ir.actions.act_window">
+        <field name="name">Company Plans</field>
+        <field name="res_model">regulatory.plans</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_sop_type"
+            model="ir.actions.act_window">
+        <field name="name">Sop Type</field>
+        <field name="res_model">regulatory.sop.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="action_sop"
+            model="ir.actions.act_window">
+        <field name="name">Sop</field>
+        <field name="res_model">regulatory.sop</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <!--    <record id="action_company_plans_form"-->
+    <!--            model="ir.actions.act_window">-->
+    <!--        <field name="name">Company Plans"</field>-->
+    <!--        <field name="res_model">regulatory.company.plans"</field>-->
+    <!--        <field name="view_mode">form</field>-->
+    <!--        <field name="help" type="html">-->
+    <!--            <p class="o_view_no_content_smiling_face">-->
+    <!--            </p>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <menuitem id="sop"
+              name="SOP's"
+              parent="regulatory_root"
+              sequence="11"/>
+
+    <menuitem id="audits"
+              name="Audits"
+              parent="regulatory_root"
+              sequence="13"/>
+
+    <menuitem id="laboratory"
+              name="Laboratory"
+              parent="sop"
+              action="action_laboratory"
+              sequence="-9"/>
+
+    <menuitem id="production"
+              name="Production"
+              parent="sop"
+              action="action_production"
+              sequence="-8"/>
+
+    <menuitem id="warehouse"
+              name="Warehouse"
+              parent="sop"
+              action="action_warehouse"
+              sequence="-7"/>
+
+    <menuitem id="general"
+              name="General"
+              parent="sop"
+              action="action_general"
+              sequence="-6"/>
+
+    <menuitem id="quality"
+              name="Quality"
+              parent="sop"
+              action="action_quality"
+              sequence="-6"/>
+    <menuitem id="reworks"
+              name="Reworks"
+              parent="sop"
+              action="action_reworks"
+              sequence="-5"/>
+
+    <menuitem id="historical"
+              name="Historical"
+              parent="sop"
+              action="action_historical"
+              sequence="-5"/>
+    <menuitem id="agencies"
+              name="Agencies"
+              parent="regulatory_root"
+              sequence="12"/>
+    <menuitem id="fda"
+              name="FDA"
+              parent="agencies"
+              action="action_fda"
+              sequence="1"/>
+    <menuitem id="epa"
+              name="EPA"
+              parent="agencies"
+              action="action_epa"
+              sequence="2"/>
+
+    <menuitem id="state"
+              name="States"
+              parent="agencies"
+              sequence="3"/>
+
+    <menuitem id="california"
+              name="California"
+              parent="state"
+              action="action_california"
+              sequence="2"/>
+
+    <menuitem id="texas"
+              name="Texas"
+              parent="state"
+              action="action_texas"
+              sequence="4"/>
+    <menuitem id="internal_audits"
+              name="Internal Audits"
+              parent="audits"
+              action="action_internal_audits"
+              sequence="4"/>
+    <menuitem id="nsf"
+              name="NSF"
+              parent="audits"
+              action="action_nsf"
+              sequence="4"/>
+
+    <menuitem id="walmart"
+              name="Wal-Mart"
+              parent="audits"
+              action="action_walmart"
+              sequence="5"/>
+
+    <menuitem id="heb"
+              name="HEB"
+              parent="audits"
+              action="action_heb"
+              sequence="6"/>
+
+    <menuitem id="archpoint"
+              name="Archpoint"
+              parent="audits"
+              action="action_heb"
+              sequence="7"/>
+
+    <menuitem id="training"
+              name="Training"
+              parent="regulatory_root"
+              action="action_training"
+              sequence="15"/>
+
+    <menuitem id="pco"
+              name="PCO"
+              parent="regulatory_root"
+              sequence="16"/>
+    <menuitem id="more"
+              name="More"
+              parent="regulatory_root"
+              sequence="17"/>
+
+    <menuitem id="supplier_docs"
+              name="Suppliet Documents"
+              parent="pco"
+              action="action_supplier_docs"
+              sequence="15"/>
+
+    <menuitem id="org_chart"
+              name="Org Chart"
+              parent="more"
+              action="action_org_chart"
+              sequence="2"/>
+
+    <menuitem id="registrations"
+              name="Registrations"
+              parent="more"
+              action="action_registrations"
+              sequence="3"/>
+
+    <menuitem id="statement"
+              name="Statement"
+              parent="more"
+              action="action_statement"
+              sequence="4"/>
+
+    <menuitem id="revisions"
+              name="Revisions"
+              parent="more"
+              action="action_revisions"
+              sequence="5"/>
+
+    <menuitem id="suppliers"
+              name="Suppliers"
+              parent="more"
+              action="action_suppliers"
+              sequence="6"/>
+
+    <menuitem id="complaints"
+              name="Complaints"
+              parent="more"
+              action="action_complaints"
+              sequence="7"/>
+
+    <menuitem id="forms"
+              name="Forms"
+              parent="more"
+              action="action_forms"
+              sequence="9"/>
+
+    <menuitem id="quarterly_review_log"
+              name="Quarterly Management Review Log"
+              parent="more"
+              action="action_quarterly_review_log"
+              sequence="10"/>
+
+    <menuitem id="mock_recalls"
+              name="Mock Recalls"
+              parent="more"
+              action="action_mock_recalls"
+              sequence="10"/>
+
+    <menuitem id="job_description"
+              name="Job Description"
+              parent="more"
+              action="action_job_description_form"
+              sequence="15"/>
+
+    <menuitem id="plans"
+              name="Company Plans"
+              parent="more"
+              action="action_plans"
+              sequence="8"/>
+
+    <menuitem id="sop_type"
+              name="Sop Type"
+              parent="more"
+              action="action_sop_type"
+              sequence="1"/>
+
+    <menuitem id="revisions"
+              name="Revisions"
+              parent="more"
+              action="action_regulatory_revision_files"
+              sequence="2"/>
+
+    <!--    <menuitem id="company_plans"-->
+    <!--              name="Company Plans"-->
+    <!--              parent="more"-->
+    <!--              action="action_company_plans"-->
+    <!--              sequence="8"/>-->
+
+</odoo>

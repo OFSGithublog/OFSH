@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pallets_traceability_form" model="ir.ui.view">
+        <field name="name">pallets.traceability.form</field>
+        <field name="model">pallets.traceability</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="manufacturing_order_id"
+                                   force_save="1"/>
+                            <field name="client_id" force_save="1"/>
+                            <field name="product_id" force_save="1"/>
+                            <field name="sku_code" force_save="1"/>
+                            <field name="client_ref" force_save="1"/>
+                        </group>
+                        <group>
+                            <!--                            <field name="qa_pack_out" widget="radio"-->
+                            <!--                                   options="{'horizontal': true}"/>-->
+                            <field name="qa_pack_out" widget="selection_badge"/>
+                            <field name="pallet_height"/>
+                            <field name="pallet_weight"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Boxes"
+                              name="boxes">
+                            <field name="full_boxes_ids"
+                            >
+                                <tree editable="bottom">
+                                    <field name="lot_code_full"/>
+                                    <field name="description"/>
+                                    <field name="full_boxes"/>
+                                    <field name="qty"/>
+                                    <field name="subtotal"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_boxes"/>
+                                <field name="total_qty"/>
+                            </group>
+                            <group>
+                                <field name="comments"/>
+                                <field name="signature" string="QA Verified By"
+                                       widget="signature"/>
+                                <field name="initial"/>
+                                <field name="master_shipper_img"
+                                       widget="image"/>
+                                <field name="pallet_1" widget="image"/>
+                                <field name="pallet_2" widget="image"/>
+                            </group>
+                        </page>
+
+                    </notebook>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+                <footer>
+                    <button string="Ok" class="btn-primary" name="save"
+                            special="save"/>
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pallets_traceability_tree" model="ir.ui.view">
+        <field name="name">pallets.traceability.tree</field>
+        <field name="model">pallets.traceability</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="create_date"/>
+                <field name="manufacturing_order_id"/>
+                <field name="product_id"/>
+                <field name="sku_code"/>
+                <field name="lot_code"/>
+                <field name="pallet_1" widget="image"/>
+                <field name="name"/>
+                <field name="total_qty"/>
+                <field name="product_qty"/>
+                <field name="client_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_pallets_traceability"
+            model="ir.actions.act_window">
+        <field name="name">pallets</field>
+        <field name="res_model">pallets.traceability</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+                pallet!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="pallet_traceability"
+              name="Pallets"
+              parent="mrp.menu_mrp_root"
+              action="action_pallets_traceability"
+              sequence="10000"/>
+
+</odoo>
+
+

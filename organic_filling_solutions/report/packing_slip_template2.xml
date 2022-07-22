@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="custom_layout_packing_slip_new">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+            <div class="header">
+                <div class="o_boxed_header">
+                    <div class="row">
+                        <div class="col-6">
+                            <img t-if="o.company_id.logo"
+                                 t-att-src="image_data_uri(o.company_id.logo)"
+                                 style="min-height: 45px;" alt="Logo"/>
+                        </div>
+                        <div class="col-6">
+                            <div class="float-right">
+                                <div name="company_address">
+                                    <span class="company_address"
+                                          t-field="res_company.partner_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="article">-->
+<!--                <t t-raw="0"/>-->
+<!--            </div>-->
+            <div class="article">
+                <t t-out="0"/>
+            </div>
+            <div t-attf-class="footer o_clean_footer o_company_#{res_company.id}_layout">
+                <div class="row">
+                    <div class="col-3">
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </div>
+                    <div class="col-3" style="position: absolute;right: 20px;">
+                        <ul t-if="report_type == 'pdf'"
+                            class="list-inline pagenumber float-right text-center">
+                            <li class="list-inline-item">
+                                <strong>
+                                    <span class="page"/>
+                                    /
+                                    <span class="topage"/>
+                                </strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row"
+                     style="text-align:center;position:center;top:20px;">
+                    <div class="col-10">
+                        <p style="font-size:120%;">FOR QUESTIONS ABOUT THIS
+                            SHIPMENT
+                            PLEASE CONTACT
+                        </p>
+                    </div>
+                </div>
+                <div class="row" style="position:relative;top: 5px;">
+                    <div class="col-3">
+                        <span t-esc="res_company.phone"/>
+                    </div>
+                    <div class="col-5">
+                        <span t-esc="res_company.email"/>
+                    </div>
+                    <div class="col-4">
+                        <div class="footer_web">
+                            <span t-esc="res_company.website"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"
+                     style="text-align:center;position:relative;top:20px;">
+                    <div class="col-10">
+                        <h5>Thank You For Your Business</h5>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template id="packing_slip_new">
+            <t t-set="o" t-value="doc"/>
+            <t t-call="organic_filling_solutions.custom_layout_packing_slip_new">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="text-center">
+                    </div>
+                    <table class="table table-borderless m-0"
+                           style="margin-top:30px;">
+                        <tr>
+                            <td>SHIP To:</td>
+                            <td>BILL To:</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>PACKING SLIP#:
+                                <t t-if="o.name">
+                                    <t t-esc="o.name"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div name="company_address">
+                                    <span class="company_address"
+                                          t-field="o.client_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+                                    <t t-if="o.client_id">
+                                        <t t-esc="o.client_id.phone"/>
+                                    </t>
+                                </div>
+                            </td>
+                            <td>
+                                <div name="company_address">
+                                    <span class="company_address"
+                                          t-field="o.client_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                                    />
+                                    <t t-if="o.client_id">
+                                        <t t-esc="o.client_id.phone"/>
+                                    </t>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <span>Date:</span>
+                                <t t-if="o.create_date">
+                                    <t t-esc="o.create_date.date()"/>
+                                </t>
+                                <br></br>
+                                <br></br>
+                                <span>Client Po#:</span>
+                                <t t-if="o.client_ref">
+                                    <t t-esc="o.client_ref"/>
+                                </t>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table class="table table-borderless m-0">
+                        <tr>
+                            <td>Product Name:
+                                <t t-if="o.product_id">
+                                    <span>[</span>
+                                    <t t-esc="o.sku_code"/>
+                                    <span>]</span>
+                                    <t t-esc="o.product_id.name"/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered mt32">
+                        <tr>
+                            <th>LOT Code</th>
+                            <th>Description</th>
+                            <th>Boxes</th>
+                            <th>QTY/Boxes</th>
+                            <th>Subtotal</th>
+                        </tr>
+                        <t t-foreach="o.full_boxes_ids" t-as="line">
+                            <tr>
+                                <td>
+                                    <t t-if="line.lot_code_full">
+                                        <t t-esc="line.lot_code_full"/>
+                                    </t>
+                                </td>
+                                <br></br>
+                                <td>
+                                    <t t-if="line.description">
+                                        <t t-esc="line.description"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="line.full_boxes">
+                                        <t t-esc="line.full_boxes"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="line.qty">
+                                        <t t-esc="line.qty"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="line.subtotal">
+                                        <t t-esc="line.subtotal"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <table class="table table-borderless m-0">
+                        <tr>
+                            <td>
+                                <span>Total Boxes#:</span>
+                                <t t-if="o.total_boxes">
+                                    <t t-esc="o.total_boxes"/>
+                                </t>
+                            </td>
+                            <br></br>
+                            <td>
+                                <span>Total QTY#:</span>
+                                <t t-if="ototal_qty">
+                                    <t t-esc="o.total_qty"/>
+                                </t>
+                            </td>
+                            <br></br>
+                        </tr>
+                    </table>
+                    <table class="table table-borderless m-0">
+                        <tr>
+                            <th>Pallet Height</th>
+                            <br></br>
+                            <th>Pallet Weight</th>
+                            <br></br>
+                            <th>Comments</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <t t-if="o.pallet_height">
+                                    <t t-esc="o.pallet_height"/>
+                                </t>
+                            </td>
+                            <br></br>
+                            <td>
+                                <t t-if="o.pallet_weight">
+                                    <t t-esc="o.pallet_weight"/>
+                                </t>
+                            </td>
+                            <br></br>
+                            <td>
+                                <t t-if="o.comments">
+                                    <t t-esc="o.comments"/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="packing_slip2">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="organic_filling_solutions.packing_slip_new"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

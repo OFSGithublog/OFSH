@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+
+        <!--    sequence-->
+        <record id="seq_parent_parent" model="ir.sequence">
+            <field name="name">Parent Sequence</field>
+            <field name="code">parent.parent</field>
+            <field name="padding">2</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+
+</odoo>

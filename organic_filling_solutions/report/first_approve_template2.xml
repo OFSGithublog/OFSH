@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="custom_layout_first_article">
+            <div class="header">
+                <div class="o_boxed_header">
+                    <div class="row">
+                        <div class="col-6">
+                            <img t-if="docs.company_id.logo"
+                                 t-att-src="image_data_uri(docs.company_id.logo)"
+                                 style="min-height: 45px;" alt="Logo"/>
+                        </div>
+                        <div class="col-6">
+                            <div class="float-right">
+                                <div name="company_address">
+                                    <span class="company_address"
+                                          t-field="res_company.partner_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="article">-->
+<!--                <t t-raw="0"/>-->
+<!--            </div>-->
+            <div class="article">
+                <t t-out="0"/>
+            </div>
+            <div t-attf-class="footer o_clean_footer o_company_#{res_company.id}_layout">
+                <div class="row">
+                    <div class="col-3">
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </div>
+                    <div class="col-3" style="position: absolute;right: 20px;">
+                        <ul t-if="report_type == 'pdf'"
+                            class="list-inline pagenumber float-right text-center">
+                            <li class="list-inline-item">
+                                <strong>
+                                    <span class="page"/>
+                                    /
+                                    <span class="topage"/>
+                                </strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row"
+                     style="text-align:center;position:center;top:20px;">
+                    <div class="col-10">
+                        <p style="font-size:120%;">FOR QUESTIONS ABOUT THIS
+                            SHIPMENT
+                            PLEASE CONTACT
+                        </p>
+                    </div>
+                </div>
+                <div class="row" style="position:relative;top: 5px;">
+                    <div class="col-3">
+                        <span t-esc="res_company.phone"/>
+                    </div>
+                    <div class="col-5">
+                        <span t-esc="res_company.email"/>
+                    </div>
+                    <div class="col-4">
+                        <div class="footer_web">
+                            <span t-esc="res_company.website"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"
+                     style="text-align:center;position:relative;top:20px;">
+                    <div class="col-10">
+                        <h5>Thank You For Your Business</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="text-center">
+
+                    <div class="text-center">
+                        <h5>Thank You For Your Business</h5>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template id="first_approve_template_new">
+            <t t-set="o" t-value="doc"/>
+            <t t-call="organic_filling_solutions.custom_layout_first_article">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="text-center">
+                        <h1>First Article Approval</h1>
+                    </div>
+                    <div style="padding-top: 40px;">
+                        <h5 style="text-align:center;">
+                            <span>
+                                <strong>Product name:</strong>
+                                <t t-esc="o.product_id.name"/>
+                            </span>
+                        </h5>
+                    </div>
+                    <table class="table table-borderless m-0"
+                           style="padding-top: 10px;width: 100%;">
+                        <tr>
+                            <td>
+                                <strong>Client:</strong>
+                            </td>
+                            <td>
+                                <strong>Client PO#:</strong>
+                            </td>
+                            <td>
+                                <strong>Display name:</strong>
+                            </td>
+                            <td>
+                                <strong>Lot code:</strong>
+                            </td>
+                        </tr>
+                        <tr style="padding-top: 10px;width: 100%;">
+                            <td style="padding-top: 10px;">
+                                <t t-if="o.client_id.name">
+                                    <t t-esc="o.client_id.name"/>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-if="o.client_ref">
+                                    <t t-esc="o.client_ref"/>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-if="o.name">
+                                    <t t-esc="o.name"/>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-if="o.lot_code">
+                                    <t t-esc="o.lot_code"/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-borderless">
+                        <t t-if="o.approval_pic">
+                            <tr>
+                                <strong>
+                                    Picture of the Drum /Bulk ( Lot Code):
+                                </strong>
+                            </tr>
+                            <td>
+                                <img t-attf-src="data:image/png;base64,{{o.approval_pic}}"
+                                     class="o_image_64_max"
+                                     style="width:400px;height:350px;max-height: 300px; min-width: 300px;"/>
+                            </td>
+                        </t>
+                    </table>
+                    <table class="table table-borderless">
+                        <t t-if="o.approval_pic2">
+                            <tr>
+                                <strong>
+                                    Picture of Bottle with label:
+                                </strong>
+                            </tr>
+                            <td>
+                                <img t-attf-src="data:image/png;base64,{{o.approval_pic2}}"
+                                     class="o_image_64_max"
+                                     style="width:400px;height:350px;max-height: 300px; min-width: 300px;"/>
+                            </td>
+                        </t>
+                    </table>
+                    <div class="row" style="page-break-before:always;">
+                    </div>
+                    <table class="table table-borderless">
+                        <t t-if="o.approval_pic3">
+                            <tr>
+                                <strong>
+                                    Picture of packout with lot code :
+                                </strong>
+                            </tr>
+                            <td>
+                                <img t-attf-src="data:image/png;base64,{{o.approval_pic3}}"
+                                     class="o_image_64_max"
+                                     style="width:400px;height:350px;max-height: 300px; min-width: 300px;"/>
+                            </td>
+                        </t>
+                    </table>
+                    <table class="table table-borderless">
+                        <t t-if="o.approval_pic4">
+                            <tr>
+                                <strong>
+                                    Picture of master case label :
+                                </strong>
+                            </tr>
+                            <td>
+                                <img t-attf-src="data:image/png;base64,{{o.approval_pic4}}"
+                                     class="o_image_64_max"
+                                     style="width:400px;height:350px;max-height: 300px; min-width: 300px;"/>
+                            </td>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="first_approve_template_2">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="organic_filling_solutions.first_approve_template_new"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

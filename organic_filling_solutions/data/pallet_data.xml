@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+
+        <!--    sequence-->
+        <record id="seq_pallets" model="ir.sequence">
+            <field name="name">Pallet Sequence</field>
+            <field name="code">pallets.traceability</field>
+            <field name="prefix">MO/PLT/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+
+</odoo>

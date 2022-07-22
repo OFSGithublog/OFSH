@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_first_approval_report" model="ir.actions.report">
+        <field name="name">First Article Approval</field>
+        <field name="model">mrp.production</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">organic_filling_solutions.first_approve_template_2</field>
+        <field name="report_file">organic_filling_solutions.first_approve_template_2</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale.product_template_action" model="ir.actions.act_window">
+    <!--        <field name="context">{"search_default_filter_to_sell":0}</field>-->
+    <field name="context">{"search_default_filter_to_sell":1,
+        "sale_multi_pricelist_product_template": 1,"default_detailed_type":
+        'product'}
+    </field>
+    </record>
+    <record id="product_template_customer_inherit_form" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="taxes_id" position="before">
+                <field name="customer_id" string="Client"/>
+                <field name="parent_selected" force_save="1" invisible="1"/>
+            </field>
+            <xpath expr="//page[@name='purchase']" position="after">
+                <page name="sku_ins" string="SKU Instruction">
+                    <group>
+                        <field name="product_instructions_id"
+                               widget="pdf_viewer"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='inventory']" position="before">
+                <page name="regulatory" string="Regulatory">
+                    <div>
+                        <label for="chemicals_received_ids"
+                               string="Chemicals Received"/>
+                    </div>
+                    <field name="chemicals_received_ids"
+                           string="Chemicals Received">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="item"/>
+                            <field name="type"/>
+                            <field name="vendor_id"/>
+                            <field name="lot_code"/>
+                            <field name="create_uid"/>
+                            <field name="create_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//div[@name='options']" position="after">
+                <group>
+                    <table>
+                        <tr>
+                            <td>
+                                <field name="parent_type1" force_save="1"
+                                       options="{'no_create_edit': True, 'no_open': True}"/>
+                            </td>
+                            <td>
+                                <field name="attribute_type1" force_save="1"
+                                       options="{'no_edit': True, 'no_open': True}"/>
+                            </td>
+                            <td>
+                                <field name="attribute_type2" force_save="1"
+                                       options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                            </td>
+                            <td>
+                                <field name="attribute_type3" force_save="1"
+                                       options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                            </td>
+                            <td>
+                                <field name="attribute_type4" force_save="1"
+                                       options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                            </td>
+                            <td>
+                                <field name="attribute_type5" force_save="1"
+                                       options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                            </td>
+                            <td>
+                                <field name="attribute_type6" force_save="1"
+                                       options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <field name="parent_parent" widget="selection"/>
+                            </td>
+                            <td>
+                                <field name="parent_attribute1"
+                                       attrs="{'invisible': ['|',('parent_parent', '==', False),('attribute_type1','==',False)]}"
+                                       context="{'pos': 1,'on2m' : parent_parent}"
+                                       options="{'no_create_edit':1, 'no_open': 1}"
+                                       placeholder="[000] attribute 1"/>
+                            </td>
+                            <td>
+                                <field name="parent_attribute2"
+                                       options="{'no_create_edit':1, 'no_open': 1}"
+                                       attrs="{'invisible': ['|',('parent_parent', '==', False),('attribute_type2','==',False)]}"
+                                       context="{'pos': 2,'on2m' : parent_parent}"
+                                       placeholder="[00] attribute 2"/>
+                            </td>
+                            <td>
+                                <field name="parent_attribute3"
+                                       options="{'no_create_edit':1, 'no_open': 1}"
+                                       attrs="{'invisible': ['|',('parent_parent', '==', False),('attribute_type3','==',False)]}"
+                                       context="{'pos': 3,'on2m' : parent_parent}"
+                                       placeholder="[00] attribute 3"/>
+                            </td>
+                            <td>
+                                <field name="parent_attribute4"
+                                       options="{'no_create_edit':1, 'no_open': 1}"
+                                       attrs="{'invisible': ['|',('parent_parent', '==', False),('attribute_type4','==',False)]}"
+                                       context="{'pos': 4,'on2m' : parent_parent}"
+                                       placeholder="[0000] attribute 4"/>
+                            </td>
+                            <td>
+                                <field name="parent_attribute5"
+                                       options="{'no_create_edit':1, 'no_open': 1}"
+                                       attrs="{'invisible': ['|',('parent_parent', '==', False),('attribute_type5','==',False)]}"
+                                       context="{'pos': 5,'on2m' : parent_parent}"
+                                       placeholder="[000] attribute 5"/>
+                            </td>
+                            <td>
+                                <field name="parent_attribute6"
+                                       options="{'no_create_edit':1, 'no_open': 1}"
+                                       attrs="{'invisible': ['|',('parent_parent', '==', False),('attribute_type6','==',False)]}"
+                                       context="{'pos': 6,'on2m' : parent_parent}"
+                                       placeholder="[000] attribute 6"/>
+                            </td>
+                        </tr>
+                    </table>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

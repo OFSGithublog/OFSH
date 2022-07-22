@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_group_by" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='function']" position="before">
+                <field name="contact_type"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_inherit" model="ir.ui.view">
+        <field name="name">res.partner.filter.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Contact Type" name="group_by_contact_type"
+                        context="{'group_by':'contact_type'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="contacts.action_contacts" model="ir.actions.act_window">
+        <field name="context">{'default_is_company': True,'search_default_group_by_contact_type':1}</field>
+    </record>
+</odoo>
+

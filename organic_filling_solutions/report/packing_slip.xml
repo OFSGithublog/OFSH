@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_packing_slip" model="ir.actions.report">
+        <field name="name">Packing Slip</field>
+        <field name="model">pallets.traceability</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">organic_filling_solutions.packing_slip2</field>
+        <field name="report_file">organic_filling_solutions.packing_slip</field>
+        <field name="binding_model_id" ref="organic_filling_solutions.model_pallets_traceability"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

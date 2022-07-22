@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="custom_layout2">
+            <div class="header">
+                <div class="o_boxed_header">
+                    <div class="row">
+                        <div class="col-6">
+                            <img t-if="res_company.logo"
+                                 t-att-src="image_data_uri(res_company.logo)"
+                                 alt="logo"
+                                 style="min-height: 45px;"/>
+                        </div>
+                        <div class="col-6">
+                            <div class="float-right">
+                                <div name="company_address">
+                                    <span class="company_address"
+                                          t-field="res_company.partner_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="article">-->
+<!--                <t t-raw="0"/>-->
+<!--            </div>-->
+            <div class="article">
+                <t t-out="0"/>
+            </div>
+            <div t-attf-class="footer o_clean_footer o_company_#{res_company.id}_layout">
+                <div class="row">
+                    <div class="col-3">
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </div>
+                    <div class="col-3" style="position: absolute;right: 20px;">
+                        <ul t-if="report_type == 'pdf'"
+                            class="list-inline pagenumber float-right text-center">
+                            <li class="list-inline-item">
+                                <strong>
+                                    <span class="page"/>
+                                    /
+                                    <span class="topage"/>
+                                </strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row" style="position:relative;top: 20px;">
+                    <div class="col-3">
+                        <span t-esc="res_company.phone"/>
+                    </div>
+                    <div class="col-5">
+                        <span t-esc="res_company.email"/>
+                    </div>
+                    <div class="col-4">
+                        <div class="footer_web">
+                            <span t-esc="res_company.website"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template id="quality_control_template_data">
+            <t t-set="o" t-value="doc"/>
+            <t t-call="organic_filling_solutions.custom_layout2">
+                <div class="page">
+                    <div class="row">
+                        <div class="text-left">
+                            <h2>Q.C-Volume Check-Log</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-borderless m-0">
+                                <tr>
+                                    <td>
+                                        <span class="o_stat_text">Date:</span>
+                                        <t t-if="o.create_date">
+                                            <t t-esc="o.create_date.date()"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span class="o_stat_text">By:</span>
+                                        <t t-if="o.create_uid.name">
+                                            <t t-esc="o.create_uid.name"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span class="o_stat_text">MO:</span>
+                                        <t t-if="o.mo_id">
+                                            <t t-esc="o.mo_id.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="o_stat_text">Product:
+                                        </span>
+                                        <t t-if="o.product_id.name">
+                                            <t t-esc="o.product_id.name"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span class="o_stat_text">SKU:</span>
+                                        <t t-if="o.sku_code">
+                                            <t t-esc="o.sku_code"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span class="o_stat_text">Lot#:</span>
+                                        <t t-if="o.lot_code">
+                                            <t t-esc="o.lot_code"/>
+                                        </t>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="o_stat_text">Unit/M:</span>
+                                        <t t-if="o.product_uom_id.name">
+                                            <t t-esc="o.product_uom_id.name"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span class="o_stat_text">Range:</span>
+                                        <t t-if="o.range">
+                                            <t t-esc="o.range"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span class="o_stat_text">Intial:</span>
+                                        <t t-if="o.initial_selection == 'hd'">
+                                            <span class="o_stat_text">HD</span>
+                                        </t>
+                                        <t t-elif="o.initial_selection == 'ra'">
+                                            <span class="o_stat_text">RA</span>
+                                        </t>
+                                        <t t-elif="o.initial_selection == 'jm'">
+                                            <span class="o_stat_text">JM</span>
+                                        </t>
+                                        <t t-elif="o.initial_selection == 'sh'">
+                                            <span class="o_stat_text">SH</span>
+                                        </t>
+                                        <t t-elif="o.initial_selection == 'ng'">
+                                            <span class="o_stat_text">NG</span>
+                                        </t>
+                                        <t t-elif="o.initial_selection == 'nr'">
+                                            <span class="o_stat_text">NR</span>
+                                        </t>
+                                        <t t-elif="o.initial_selection == 'lc'">
+                                            <span class="o_stat_text">LC</span>
+                                        </t>
+                                        <t t-elif="o.initial_selection == 's2'">
+                                            <span class="o_stat_text">S2</span>
+                                        </t>
+                                        <t t-elif="o.initial_selection == 'pb'">
+                                            <span class="o_stat_text">PB</span>
+                                        </t>
+                                        <t t-elif="o.initial_selection == 'ms'">
+                                            <span class="o_stat_text">MS</span>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-12">
+                            <table class="table table-borderless m-0"
+                                   style="display: inline-table; height: 10rem;">
+                                <tr>
+                                    <td>
+                                        <span class="o_stat_text">Density:
+                                        </span>
+
+                                        <t t-if="o.density">
+                                            <t t-esc="o.density"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span class="o_stat_text">Average
+                                            Fill:
+                                        </span>
+                                        <t t-if="o.avg_fill">
+                                            <t t-esc="o.avg_fill"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span class="o_stat_text">No. Of
+                                            People:
+                                        </span>
+                                        <t t-if="o.no_people">
+                                            <t t-esc="o.no_people"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <td>
+                                    <span class="o_stat_text">No. Of
+                                        Checks:
+                                    </span>
+                                    <t t-if="o.no_checks">
+                                        <t t-esc="o.no_checks"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span class="o_stat_text">No. Of
+                                        Bottles:
+                                    </span>
+                                    <t t-if="o.no_bottles">
+                                        <t t-esc="o.no_bottles"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span class="o_stat_text">Oil Wasted
+                                        (kg):
+                                    </span>
+                                    <t t-if="o.oil_wasted">
+                                        <t t-esc="o.oil_wasted"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span class="o_stat_text">EOS Remaining:
+                                    </span>
+                                    <t t-if="o.eos_remaining">
+                                        <t t-esc="o.eos_remaining"/>
+                                    </t>
+                                </td>
+                                <tr>
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                <tr>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered mt32">
+                                <div class="text-center">
+                                    <h3>Shift Time Logs.</h3>
+                                </div>
+                                <thead>
+                                    <tr>
+                                        <td class="text-left">Time</td>
+                                        <td class="text-left">P1</td>
+                                        <td class="text-left">P2</td>
+                                        <td class="text-left">Vac.</td>
+                                        <td class="text-left">Pack.</td>
+                                    </tr>
+                                </thead>
+                                <!--                                <t t-foreach="o.time_table_ids" t-as="move">-->
+                                <!--                                    <t t-esc="move.time"-->
+                                <!--                                       t-options="{'widget':'float_time'}"/>-->
+                                <!--                                </t>-->
+                                <t t-foreach="o.time_table_ids"
+                                   t-as="line">
+                                    <tr>
+                                        <td>
+                                            <t>
+                                                <t t-esc="line.time"
+                                                   t-options="{'widget':'float_time'}"/>
+                                            </t>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.p1"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.p2"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.vac"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.pack"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 40px;">
+                        <div class="col-12">
+                            <div t-if="o.signature"
+                                 class="mt32 ml64 mr4"
+                                 name="signature"
+                                 style="font-size: 13px;">
+                                <div class="offset-8">
+                                    <strong>Signature
+                                    </strong>
+                                </div>
+                                <div class="offset-8">
+                                    <img t-att-src="'data:image/png;base64,%s' % to_text(o.signature)"/>
+                                </div>
+                                <div class="offset-8 text-center">
+                                    <span class="o_stat_text">Print Name:</span>
+                                    <t t-if="o.initial">
+                                        <t t-esc="o.initial"/>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="quality_control_template_new2">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="organic_filling_solutions.quality_control_template_data"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_chemicals_received_form" model="ir.ui.view">
+        <field name="name">chemicals.received.form</field>
+        <field name="model">chemicals.received</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="create_uid"/>
+                            <field name="product_id"/>
+                            <field name="name"/>
+                            <field name="vendor_id"/>
+                        </group>
+                        <group>
+                            <field name="create_date"/>
+                            <field name="type"/>
+                            <field name="item"/>
+                            <field name="lot_code"/>
+                        </group>
+                    </group>
+                    <group>
+
+                        <field name="related_file1"
+                               widget="pdf_viewer"/>
+
+                        <field name="related_file2"
+                               widget="pdf_viewer"/>
+
+                        <field name="related_image"
+                               widget="image"/>
+                    </group>
+                    <!--                    </group>-->
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="chemicals_received_search" model="ir.ui.view">
+        <field name="name">chemicals.received.search</field>
+        <field name="model">chemicals.received</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="0" string="Group By">
+                      <filter string="Chemicals Received"
+                    name="group_by_chemicals_received"
+                    context="{'group_by':'type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_chemicals_received_tree" model="ir.ui.view">
+        <field name="name">chemicals.received.tree</field>
+        <field name="model">chemicals.received</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="item"/>
+                <field name="type"/>
+                <field name="vendor_id"/>
+                <field name="lot_code"/>
+                <field name="create_uid"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_chemicals_received" model="ir.actions.act_window">
+        <field name="name">Chemicals Received</field>
+        <field name="res_model">chemicals.received</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">
+            {'search_default_group_by_chemicals_received':1,}
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="regulatory_root"
+              name="Regulatory"
+              sequence="-20"/>
+
+    <menuitem id="technical_documents"
+              name="Technical Documents"
+              parent="regulatory_root"
+              sequence="10"/>
+
+    <menuitem id="chemicals_received"
+              name="Chemicals Received"
+              parent="technical_documents"
+              action="action_chemicals_received"
+              sequence="-10"/>
+</odoo>

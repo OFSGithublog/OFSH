@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_chemicals_produced_form" model="ir.ui.view">
+        <field name="name">chemicals.produced.form</field>
+        <field name="model">chemicals.produced</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+
+                            </h1>
+                        </div>
+                        <field name="create_uid"/>
+                        <field name="create_date"/>
+                        <field name="related_file"
+                               widget="pdf_viewer"/>
+                        <field name="related_image"
+                               widget="image"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_chemicals_produced"
+            model="ir.actions.act_window">
+        <field name="name">Chemicals Produced</field>
+        <field name="res_model">chemicals.produced</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="chemicals"
+              name="Chemicals Produced"
+              parent="technical_documents"
+              action="action_chemicals_produced"
+              sequence="10000"/>
+</odoo>

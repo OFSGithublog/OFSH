@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_quality_control_report" model="ir.actions.report">
+            <field name="name">Quality Control Report Log</field>
+            <field name="model">quality.control</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">organic_filling_solutions.quality_control_template_new2</field>
+            <field name="report_file">organic_filling_solutions.quality_control_template_new2</field>
+            <field name="binding_model_id" ref="model_quality_control"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

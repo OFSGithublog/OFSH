@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_pallet_wizard" model="ir.ui.view">
+        <field name="name">pallet.wizard.view.form</field>
+        <field name="model">pallet.wizard</field>
+        <field name="arch" type="xml">
+            <form string="pallet wizard">
+                <group>
+                    <p>Pallet</p>
+                </group>
+                <group>
+                    <field name="mo_id" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="product_id" readonly="1"/>
+                    <field name="qty"/>
+                </group>
+                <footer>
+                    <button name="accept" string="Accept" type="object"
+                            class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

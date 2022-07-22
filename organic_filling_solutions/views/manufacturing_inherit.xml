@@ -1,0 +1,213 @@
+<odoo>
+    <record id="view_mrp_production_filter_inherit" model="ir.ui.view">
+        <field name="name">view.mrp.production.filter.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="client_id"/>
+                <filter domain="[['parent_selected','=','blend']]" name="Blend"
+                        string="Blend"/>
+                <filter domain="[['parent_selected','=','finish']]"
+                        name="finish_product" string="Finish Products"/>
+                <filter string="Client" name="group_by_client"
+                        context="{'group_by':'client_id'}"/>
+                <filter string="Parent Type" name="group_by_parent_selected"
+                        context="{'group_by':'parent_selected'}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_mrp_production_tree_inherit" model="ir.ui.view">
+        <field name="name">view.mrp.production.tree.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="image_128" widget="image" class="oe_avatar"/>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="client_id"/>
+                <field name="parent_selected" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_mrp_production_kanban_inherit" model="ir.ui.view">
+        <field name="name">view.mrp.production.kanban.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/templates/t/div/div" position="before">
+                <div class="o_kanban_image">
+                    <field name="image_128"
+                           nolabel="1"
+                           widget="image"
+                           class="oe_right oe_avatar"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_mrp_production_form_inherit" model="ir.ui.view">
+
+        <field name="name">view.mrp.production.form.inherit</field>
+
+        <field name="model">mrp.production</field>
+
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_toggle_is_locked']" position="attributes">
+                <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='bom_id']" position="before">
+                <field name="intial_demand"/>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page/field[@name='move_raw_ids']/tree/field[@name='product_uom_qty']"
+                   position="replace">
+                <field name="product_uom_qty" force_save="1" string="To Consume"
+                       attrs="{'readonly': ['&amp;', ('parent.state', '!=', 'draft'), '|', '&amp;', ('parent.state', 'not in', ('confirmed', 'progress', 'to_close')), ('parent.is_planned', '!=', True), ('parent.is_locked', '=', True)]}"
+                       width="1"/>
+            </xpath>
+            <xpath expr="//page[@name='miscellaneous']//field[@name='origin']" position="after">
+                <field name="invoice_status"/>
+                <field name="delivery_invoice"/>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm']" position="replace">
+                <button name="action_confirm"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        string="Mark As To DO" type="object"
+                        class="oe_highlight"
+                        data-hotkey="v"/>
+            </xpath>
+            <xpath expr="//field[@name='qty_producing']" position="replace">
+                <field name="qty_producing" invisible="1"/>
+                <field name="quantity_produced" class="oe_inline text-left"
+                       required="1"/>/
+            </xpath>
+            <xpath expr="//button[@name='button_scrap']" position="replace">
+                <button name="button_scrap" type="object" string="Waste"
+                        attrs="{'invisible': [('state', 'in', ('cancel', 'draft'))]}"
+                        data-hotkey="z"/>
+            </xpath>
+            <xpath expr="//button[@name='do_unreserve']" position="before">
+                <button name="button_produce"
+                        attrs="{'invisible': ['|',('move_raw_ids', '=', []),'&amp;','|',('state', 'not in', ('confirmed', 'progress')),('qty_producing', '!=', 0),('state', '!=', 'to_close')]}"
+                        string="Produce" type="object" class="oe_highlight"
+                        data-hotkey="g"/>
+                <button name="button_produce"
+                        attrs="{'invisible': ['|',('move_raw_ids', '!=', []),'&amp;','|',('state', 'not in', ('confirmed', 'progress')),('qty_producing', '!=', 0),('state', '!=', 'to_close')]}"
+                        string="Produce" type="object" class="oe_highlight"
+                        confirm="Tthere are no components to consume. Are you still sure you want to continue?"
+                        data-hotkey="g"/>
+                <button name="button_test" string="Create Invoice" type="object" class="btn-primary" data-hotkey="q" attrs="{'invisible': ['|','|',('delivery_invoice', '!=',True), ('state', '!=', 'done'),('invoice_status', '!=', 'to invoice')]}"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <field name="image_128" widget="image" class="oe_avatar"/>
+            </xpath>
+            <field name="bom_id" position="after">
+                <field name="lot_code"/>
+                <field name="client_id" string="Client" required="1"/>
+                <field name="client_ref" string="Client PO#"/>
+            </field>
+            <xpath expr="//page[@name='operations']" position="before">
+                <page name="description" string="Description">
+                    <group>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                        <field name="product_instructions_id" widget="binary"/>
+                        <field name="description_note"
+                               placeholder="Add a note..."/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='operations']" position="before">
+                <page name="first_article" string="First Article Approval">
+                    <group>
+                        <field name="bulk_provided_by_client"/>
+                        <field name="bulk_approved"/>
+                        <field name="approval_pic" widget="image"/>
+                        <field name="approval_pic2" widget="image"/>
+                        <field name="approval_pic3" widget="image"/>
+                        <field name="approval_pic4" widget="image"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='operations']" position="before">
+                <page name="quality_control" string="QC"
+                      attrs="{'invisible':[('state','==','draft')]}">
+                    <label for="qc_ids" string="Volume Check"/>
+                    <field name="qc_ids">
+                        <tree>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <button string="Print Report"
+                                    name="action_print_report"
+                                    type="object"
+                                    class="fa fa-print"/>
+                        </tree>
+
+                    </field>
+                    <button string="Print all" type="object"
+                            name="action_qc_all"
+                            class="btn btn-sm btn-primary pull-right"/>
+                    <button string="Print" type="object"
+                            name="action_qc_report"
+                            class="btn btn-sm btn-primary pull-right"/>
+
+                </page>
+            </xpath>
+<!--            <xpath expr="//page[@name='operations']" position="before">-->
+<!--                <page name="quality_control2" string="finished move line">-->
+<!--                    <field name="finished_move_line_ids">-->
+<!--                    </field>-->
+<!--                    <field name="move_finished_ids"-->
+<!--                           attrs="{'readonly': ['|', ('state', '=', 'cancel'), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}">-->
+<!--                        <tree editable="bottom">-->
+<!--                            <field name="product_id"/>-->
+<!--                            <field name="product_uom_qty"/>-->
+<!--                            <field name="product_uom"/>-->
+<!--                            <field name="operation_id"/>-->
+<!--                            <field name="byproduct_id"/>-->
+<!--                            <field name="name"/>-->
+<!--                            &lt;!&ndash;                            &lt;!&ndash;                                <field name="date_deadline"/>&ndash;&gt;&ndash;&gt;-->
+<!--                            <field name="picking_type_id"/>-->
+<!--                            <field name="location_id"/>-->
+<!--                            <field name="location_dest_id"/>-->
+<!--                            <field name="company_id"/>-->
+<!--                            <field name="warehouse_id"/>-->
+<!--                            <field name="origin"/>-->
+<!--                            <field name="group_id"/>-->
+<!--                            &lt;!&ndash;                                <field name="propagate_cancel"/>&ndash;&gt;-->
+<!--                            <field name="move_dest_ids"/>-->
+<!--                            <field name="state"/>-->
+<!--                            &lt;!&ndash; Useless as the editable in tree declaration -> For Form Test&ndash;&gt;-->
+<!--                            <field name="product_uom_category_id"/>-->
+<!--                            <field name="allowed_operation_ids"/>-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--                </page>-->
+<!--            </xpath>-->
+            <xpath expr="//page[@name='operations']" position="attributes">
+                <attribute name="attrs">{'invisible': True}
+                </attribute>
+            </xpath>
+            <xpath expr="//page[@name='finished_products']"
+                   position="attributes">
+                <attribute name="attrs">{'invisible': True}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_raw_ids']/tree"
+                   position="attributes">
+                <attribute name="editable">false</attribute>
+                <attribute name="create">false</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp.mrp_production_action" model="ir.actions.act_window">
+        <field name="context">
+            {'search_default_group_by_parent_selected':1,'search_default_group_by_client':
+            1}
+        </field>
+    </record>
+
+</odoo>

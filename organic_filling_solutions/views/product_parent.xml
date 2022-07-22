@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--components form views -->
+    <record id="view_product_parent_type_form" model="ir.ui.view">
+        <field name="name">product.parent.type.form</field>
+        <field name="model">product.parent.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <!--                        <div class="oe_title">-->
+                        <!--                            <h1>-->
+                        <!--                                <field name="sequence"/>-->
+                        <!--                            </h1>-->
+                        <!--                        </div>-->
+                        <field name="name"/>
+                        <field name="sequence_padding_no"/>
+                    </group>
+                    <group>
+                        <notebook>
+                            <page string="Attribute Values"
+                                  name="Attribute Values">
+                                <field name="attribute_ids"
+                                       widget="section_and_note_one2many">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="parent_type"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_parent_attributes_form" model="ir.ui.view">
+        <field name="name">product.parent.attributes.form</field>
+        <field name="model">product.parent.attributes</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="parent_type"/>
+                        <field name="code" readonly="1"/>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_parent_parent_form" model="ir.ui.view">
+        <field name="name">parent.parent.form</field>
+        <field name="model">parent.parent</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                    </group>
+                    <group>
+                        <notebook>
+                            <page string="mapping" name="mapping">
+                                <field name="attribute_mapping_ids"
+                                       widget="section_and_note_one2many">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget='handle'/>
+                                        <field name="product_type"/>
+                                        <field name="product_attributes"
+                                               widget="many2many_tags"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--components search views -->
+    <record id="parent_attributes_search" model="ir.ui.view">
+        <field name="name">product.parent.attributes.search</field>
+        <field name="model">product.parent.attributes</field>
+        <field name="arch" type="xml">
+            <search string="Group BY">
+                <group expand="1" string="Group By">
+                    <filter string="Group By Parent" name="group_by_parent"
+                            context="{'group_by':'parent_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--components tree views -->
+
+    <record id="view_product_parent_type_tree" model="ir.ui.view">
+        <field name="name">product.parent.type.tree</field>
+        <field name="model">product.parent.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sequence_padding_no"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_parent_attributes_tree" model="ir.ui.view">
+        <field name="name">product.parent.attributes.tree</field>
+        <field name="model">product.parent.attributes</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="parent_type"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_parent_parent_tree" model="ir.ui.view">
+        <field name="name">parent.parent.tree</field>
+        <field name="model">parent.parent</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--components actions -->
+
+
+    <record id="action_product_parent_type"
+            model="ir.actions.act_window">
+        <field name="name">Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.parent.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+                Create a new product parent!
+            </p>
+        </field>
+    </record>
+    <record id="action_product_attributes"
+            model="ir.actions.act_window">
+        <field name="name">Values</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.parent.attributes</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_by_parent': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+                Create a new product type!
+            </p>
+        </field>
+    </record>
+    <record id="action_parent_parent"
+            model="ir.actions.act_window">
+        <field name="name">Parent</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">parent.parent</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+                Create a new Parent parent!
+            </p>
+        </field>
+    </record>
+
+    <!--components menu items -->
+
+    <menuitem id="bom" name="Bom" parent="sale.menu_sale_config"
+              sequence="9999"/>
+
+    <menuitem action="action_product_parent_type"
+              name="Types"
+              id="product_parent_type_sale" parent="bom"
+              sequence="8"/>
+    <menuitem action="action_product_attributes"
+              id="product_attributes_sale" parent="bom"
+              name="Values"
+              sequence="8"/>
+    <menuitem action="action_parent_parent"
+              id="parent_parent_sale" parent="bom"
+              name="Parent"
+              sequence="8"/>
+    <menuitem id="bom_inventory"
+              name="SKU"
+              parent="stock.menu_stock_root"
+              sequence="99"/>
+    <menuitem action="action_product_parent_type"
+              name="Types"
+              id="product_parent_type" parent="bom_inventory"
+              sequence="8"/>
+    <menuitem action="action_product_attributes"
+              id="product_attributes" parent="bom_inventory"
+              name="Values"
+              sequence="8"/>
+    <menuitem action="action_parent_parent"
+              id="parent_parent" parent="bom_inventory"
+              name="Parent"
+              sequence="8"/>
+</odoo>

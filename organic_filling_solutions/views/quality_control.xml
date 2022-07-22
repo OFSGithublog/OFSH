@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_quality_control_form" model="ir.ui.view">
+        <field name="name">quality.control.form</field>
+        <field name="model">quality.control</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- Buttons -->
+                    <button string="Print Report" type="object"
+                            name="action_print_report"
+                            class="btn btn-sm btn-primary pull-right mb0"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="mo_id" invisible="1"/>
+                            <field name="product_id"/>
+                            <field name="sku_code"/>
+                            <field name="create_uid"/>
+                            <field name="create_date"/>
+                            <field name="density"/>
+                            <field name="product_uom_id" widget="selection"/>
+                            <field name="range"/>
+                            <field name="initial_selection"/>
+                        </group>
+                        <group>
+                            <field name="lot_code"/>
+                            <field name="avg_fill"/>
+                            <field name="no_people"/>
+                            <field name="no_checks"/>
+                            <field name="no_bottles"/>
+                            <field name="oil_wasted"/>
+                            <field name="eos_remaining"/>
+                            <label for="qc_frequency" string="Shift"/>
+                            <field name="qc_frequency"
+                                   widget="selection_badge"/>
+                        </group>
+                        <field name="time_table_ids" mode="tree">
+                            <tree editable="bottom">
+                                <field name="time" widget="float_time"/>
+                                <field name="p1"/>
+                                <field name="p2"/>
+                                <field name="vac"/>
+                                <field name="pack"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <field name="pallet_verify"/>
+                            <field name="signature" widget="signature"/>
+                            <field name="initial"/>
+                            <field name="attachment_ids"
+                                   widget="many2many_binary"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_quality_control_tree" model="ir.ui.view">
+        <field name="name">quality.control.tree</field>
+        <field name="model">quality.control</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="create_date"/>
+                <field name="create_uid"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_quality_control"
+            model="ir.actions.act_window">
+        <field name="name">Q.C -Volume Check - Log</field>
+        <field name="res_model">quality.control</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_no_content_smiling_face">
+                quality control!
+            </p>
+        </field>
+    </record>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+

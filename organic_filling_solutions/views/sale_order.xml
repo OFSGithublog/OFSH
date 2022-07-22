@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="my_view_sale_form_inherit" model="ir.ui.view">
+
+        <field name="name">my.view.sale.form.inherit</field>
+
+        <field name="model">sale.order</field>
+
+        <field name="inherit_id" ref="sale.view_order_form"/>
+
+        <field name="arch" type="xml">
+
+            <!-- Before the field 'name' i add the 'default_code' field, or any field from my product form-->
+
+            <field name="partner_id" position="after">
+
+                <field name="client_po"/>
+
+            </field>
+
+        </field>
+
+    </record>
+</odoo>
