@@ -99,7 +99,7 @@
                         string="Produce" type="object" class="oe_highlight"
                         confirm="Tthere are no components to consume. Are you still sure you want to continue?"
                         data-hotkey="g"/>
-                <button name="button_test" string="Create Invoice" type="object" class="btn-primary" data-hotkey="q" attrs="{'invisible': ['|','|',('delivery_invoice', '!=',True), ('state', '!=', 'done'),('invoice_status', '!=', 'to invoice')]}"/>
+                <button name="button_invoice_mo" string="Create Invoice" type="object" class="btn-primary" data-hotkey="q" attrs="{'invisible': ['|','|',('delivery_invoice', '!=',True), ('state', '!=', 'done'),('invoice_status', '!=', 'to invoice')]}"/>
             </xpath>
             <xpath expr="//div[hasclass('oe_title')]" position="before">
                 <field name="image_128" widget="image" class="oe_avatar"/>

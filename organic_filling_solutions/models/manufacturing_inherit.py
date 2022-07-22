@@ -89,8 +89,7 @@ class ManufacturingOrganicSolutions(models.Model):
         # existing invoices. This is necessary since such a refund is not
         # directly linked to the SO.
 
-    def button_test(self):
-        print('invoice',self.invoice_status)
+    def button_invoice_mo(self):
         payment = self.env['sale.advance.payment.inv'].with_context({
             'active_model': 'sale.order',
             'active_ids': [self.order_id.id],
